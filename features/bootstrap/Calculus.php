@@ -17,7 +17,7 @@ class Calculus
     }
 
     public function add () {
-        $this->sum = $this->number1 - $this->number2;
+        $this->sum = $this->number1 + $this->number2;
     }
 
     public function display() {
