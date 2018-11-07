@@ -12,6 +12,7 @@ class FeatureContext implements Context
 {
     private $shelf;
     private $basket;
+    private $calculus;
 
     /**
      * Initializes context.
@@ -24,6 +25,7 @@ class FeatureContext implements Context
     {
         $this->shelf = new Shelf();
         $this->basket = new Basket($this->shelf);
+        $this->calculus = new Calculus();
     }
 
     /**
@@ -71,4 +73,40 @@ class FeatureContext implements Context
     {
         throw new PendingException();
     }
+
+    /**
+     * @Given /^I have the number (\d+) and the number (\d+)$/
+     * @param $a
+     * @param $b
+     */
+    public function iHaveTheNumberAndTheNumber($a, $b) {
+        $this->calculus->setNumbers($a, $b);
+    }
+
+    /**
+     * @When I add them together
+     */
+    public function iAddThemTogether()
+    {
+        $this->calculus->add();
+    }
+
+    /**
+     * @Then /^I should get (\d+)$/
+     */
+    public function iShouldGet($sum) {
+        if ($this->calculus->sum != $sum) {
+            throw new Exception("Actual sum: ".$this->calculus->sum);
+        }
+        $this->calculus->display();
+    }
+
+    /**
+     * @Given I have a third number of :num
+     */
+    public function iHaveAThirdNumberOf($num)
+    {
+        $this->calculus->setThirdNumber($num);
+    }
+
 }
