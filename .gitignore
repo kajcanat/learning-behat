@@ -1,2 +1,4 @@
 #ignore composer vendor dir
 /vendor
+#track these files, they exist
+!.gitignore
