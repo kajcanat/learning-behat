@@ -8,4 +8,4 @@ Installation
 * vendor/bin/behat
 
 ### Test
-* `add` method edit
+* edit add method in Calculus
